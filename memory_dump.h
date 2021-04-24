@@ -1,0 +1,6 @@
+#ifndef _CHIP8_MEMORY_DUMP_INCLUDED_H_
+#define _CHIP8_MEMORY_DUMP_INCLUDED_H_
+
+void mem_dump(void);
+
+#endif // _CHIP8_MEMORY_DUMP_INCLUDED_H_
