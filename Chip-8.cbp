@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../utils/file_manip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../utils/file_manip.h" />
 		<Unit filename="interpreter.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -46,6 +50,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="memory_dump.h" />
+		<Unit filename="registers.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
