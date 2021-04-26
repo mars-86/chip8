@@ -96,16 +96,16 @@ void instruction_0xF(unsigned char *sub_opcode)
 
 }
 
-void (*instructions)(unsigned char *)[] = {
+void (*instructions[])(unsigned char *) = {
     instruction_0x0, instruction_0x1, instruction_0x2,
     instruction_0x3, instruction_0x4, instruction_0x5,
     instruction_0x6, instruction_0x7, instruction_0x8,
     instruction_0x9, instruction_0xA, instruction_0xB,
     instruction_0xC, instruction_0xD, instruction_0xE,
     instruction_0xF
-}
+};
 
 void interpret(unsigned char *opcode)
 {
-    instructions[opcode[0] & 0xC)](opcode);
+    instructions[opcode[0] & 0xC](opcode);
 }
