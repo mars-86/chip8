@@ -17,10 +17,10 @@ int read_from_mem(void *buffer, unsigned short address, size_t block)
 
 void load_file_to_mem(FILE **f, unsigned short from_address)
 {
-    char c;
+    int c;
     mem_curr_addr = &memory[from_address];
     while((c = getc(*f)) != EOF)
-        *mem_curr_addr++ = c;
+        *mem_curr_addr++ = (unsigned char)c;
 }
 
 void load_block_to_mem(void *block, unsigned short from_address, size_t size)
