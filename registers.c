@@ -77,10 +77,8 @@ unsigned short get_PC(void)
 
 unsigned short pop_SP(void)
 {
-    unsigned short address;
-    if (SP_index > SP_REGISTER_INDEX_START) {
+    unsigned short address = 0xFFFF;
+    if (SP_index > SP_REGISTER_INDEX_START)
         address = REGISTERS->SP[SP_index--];
-        return address;
-    }
-    return 0xFFFF;
+    return address;
 }
