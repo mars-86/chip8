@@ -23,9 +23,10 @@
 1619148719 g:\programacion\c\github\chip-8\memory.h
 	<stdio.h>
 
-1619196534 source:g:\programacion\c\github\chip-8\memory_dump.c
+1619404380 source:g:\programacion\c\github\chip-8\memory_dump.c
 	<stdio.h>
 	"memory.h"
+	"memory_dump.h"
 
 1619397978 source:g:\programacion\c\github\chip-8\main.c
 	<stdio.h>
@@ -36,8 +37,9 @@
 
 1619145737 g:\programacion\c\github\chip-8\memory_dump.h
 
-1619400549 source:g:\programacion\c\github\chip-8\interpreter.c
+1619578820 source:g:\programacion\c\github\chip-8\interpreter.c
 	"interpreter.h"
+	"registers.h"
 
 1619397117 g:\programacion\c\github\chip-8\interpreter.h
 
@@ -48,4 +50,9 @@
 
 1585975442 g:\programacion\c\github\utils\file_manip.h
 	<stdio.h>
+
+1619404984 source:g:\programacion\c\github\chip-8\registers.c
+	"registers.h"
+
+1619579037 g:\programacion\c\github\chip-8\registers.h
 

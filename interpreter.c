@@ -1,4 +1,7 @@
 #include "interpreter.h"
+#include "registers.h"
+
+struct registers *REGISTERS;
 
 void exec_instruction_0x0(unsigned char *sub_opcode)
 {
@@ -23,12 +26,12 @@ void instruction_0x0(unsigned char *opcode)
 
 void instruction_0x1(unsigned char *opcode)
 {
-    (*opcode & 0x0FFF);
+    set_PC((*opcode & 0x0FFF));
 }
 
 void instruction_0x2(unsigned char *opcode)
 {
-    (*opcode & 0x0FFF);
+    set_PC((*opcode & 0x0FFF));
 }
 
 void instruction_0x3(unsigned char *opcode)
