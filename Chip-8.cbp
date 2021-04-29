@@ -50,6 +50,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="memory_dump.h" />
+		<Unit filename="registers.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="registers.h" />
 		<Extensions />
 	</Project>
