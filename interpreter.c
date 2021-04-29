@@ -36,7 +36,7 @@ void instruction_0x2(unsigned char *opcode)
 
 void instruction_0x3(unsigned char *opcode)
 {
-    (*opcode & 0x0FFF);
+    Vx[(*opcode & MASK_HIGH_BYTE_LOW_NIBBLE) >> 8] != *opcode & MASK_LOW_BYTE;
 }
 
 void instruction_0x4(unsigned char *opcode)
