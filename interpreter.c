@@ -26,12 +26,12 @@ void instruction_0x0(unsigned char *opcode)
 
 void instruction_0x1(unsigned char *opcode)
 {
-    set_PC((*opcode & 0x0FFF));
+    set_PC((*opcode & MASK_NNN));
 }
 
 void instruction_0x2(unsigned char *opcode)
 {
-    set_PC((*opcode & 0x0FFF));
+    set_PC((*opcode & MASK_NNN));
 }
 
 void instruction_0x3(unsigned char *opcode)
@@ -110,5 +110,5 @@ void (*instructions[])(unsigned char *) = {
 
 void interpret(unsigned char *opcode)
 {
-    instructions[opcode[0] & 0xC](opcode);
+    instructions[*opcode & MASK_HIGH_BYTE_HIGH_NIBBLE](opcode);
 }
