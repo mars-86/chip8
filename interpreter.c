@@ -3,12 +3,13 @@
 
 struct registers *REGISTERS;
 
-void exec_instruction_0x0(unsigned char *sub_opcode)
+void exec_instruction_0x0(unsigned char *opcode)
 {
-    switch(*sub_opcode){
+    switch(*opcode & MASK_LOW_BYTE){
     case 0xE0:
         break;
     case 0xEE:
+        set_PC(pop_SP());
         break;
     default:
         ;
@@ -17,10 +18,9 @@ void exec_instruction_0x0(unsigned char *sub_opcode)
 
 void instruction_0x0(unsigned char *opcode)
 {
-    unsigned char *sub_opcode = &opcode[1];
-    switch(sub_opcode[0] & 0x03) {
-    case 0x00:
-        exec_instruction_0x0(sub_opcode);
+    switch(*opcode & MASK_HIGH_BYTE_LOW_NIBBLE) {
+    case 0x0:
+        exec_instruction_0x0(opcode);
     }
 }
 
@@ -31,12 +31,13 @@ void instruction_0x1(unsigned char *opcode)
 
 void instruction_0x2(unsigned char *opcode)
 {
+    push_SP(get_PC());
     set_PC((*opcode & MASK_NNN));
 }
 
 void instruction_0x3(unsigned char *opcode)
 {
-    Vx[(*opcode & MASK_HIGH_BYTE_LOW_NIBBLE) >> 8] != *opcode & MASK_LOW_BYTE;
+    get_Vx((*opcode & MASK_HIGH_BYTE_LOW_NIBBLE) >> 8) == (*opcode & MASK_KK) ? increment_PC(2) : increment_PC(1);
 }
 
 void instruction_0x4(unsigned char *opcode)

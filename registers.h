@@ -1,9 +1,9 @@
 #ifndef _CHIP8_REGISTERS_INCLUDED_H_
 #define _CHIP8_REGISTERS_INCLUDED_H_
 
-#define MASK_NNN 0xFFF
-#define MASK_HIGH_BYTE 0xFF00
+#define MASK_NNN 0x0FFF
 #define MASK_LOW_BYTE 0x00FF
+#define MASK_HIGH_BYTE 0xFF00
 #define MASK_LOW_BYTE_LOW_NIBBLE 0x000F
 #define MASK_LOW_BYTE_HIGH_NIBBLE 0x00F0
 #define MASK_HIGH_BYTE_LOW_NIBBLE 0x0F00
@@ -27,5 +27,7 @@ unsigned char get_DT(void);
 unsigned char get_ST(void);
 unsigned short get_PC(void);
 unsigned short pop_SP(void);
+
+void increment_PC(unsigned short n);
 
 #endif // _CHIP8_REGISTERS_INCLUDED_H_
