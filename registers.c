@@ -11,22 +11,18 @@ static struct registers {
     unsigned short I;
     unsigned char DT;
     unsigned char ST;
-    unsigned char *PC;
-    unsigned short SP[STACK_LENGTH];
+    unsigned short PC;
+    unsigned short SP;
 } *REGISTERS;
 
-static short SP_index = SP_REGISTER_INDEX_START;
+static short stack[STACK_LENGTH];
 extern unsigned char *mem_ptr;
 
 void init_registers(void)
 {
     REGISTERS = (struct registers *)malloc(sizeof(struct registers));
-    REGISTERS->PC = NULL;
-    int i;
-    for (i = 0; i < Vx_REGISTER_LENGTH; ++i)
-        printf("%d ", REGISTERS->Vx[i]);
+    REGISTERS->SP = SP_REGISTER_INDEX_START;
     REGISTERS->PC = mem_ptr;
-    free(REGISTERS);
 }
 
 void set_Vx(unsigned char value, unsigned char Vn)
@@ -51,13 +47,13 @@ void set_ST(unsigned char value)
 
 void set_PC(unsigned short address)
 {
-    REGISTERS->PC = &mem_ptr[address];
+    REGISTERS->PC = address;
 }
 
 void push_SP(unsigned short address)
 {
-    if (SP_index < STACK_LENGTH)
-        REGISTERS->SP[++SP_index] = address;
+    if (REGISTERS->SP < STACK_LENGTH)
+        stack[++REGISTERS->SP] = address;
 }
 
 unsigned char get_Vx(unsigned char Vn)
@@ -82,18 +78,23 @@ unsigned char get_ST(void)
 
 unsigned short get_PC(void)
 {
-    return (*(REGISTERS->PC) << 8) | *(REGISTERS->PC + 1);
+    return REGISTERS->PC;
 }
 
 unsigned short pop_SP(void)
 {
     unsigned short address = STACK_FAULT;
-    if (SP_index > SP_REGISTER_INDEX_START)
-        address = REGISTERS->SP[SP_index--];
+    if (REGISTERS->SP > SP_REGISTER_INDEX_START)
+        address = stack[REGISTERS->SP--];
     return address;
 }
 
 void increment_PC(unsigned short n)
 {
     REGISTERS->PC += (n << 1); // instructions are two bytes long
+}
+
+void free_registers_resources(void)
+{
+    if (REGISTERS != NULL) free(REGISTERS);
 }

@@ -29,5 +29,6 @@ unsigned short get_PC(void);
 unsigned short pop_SP(void);
 
 void increment_PC(unsigned short n);
+void free_registers_resources(void);
 
 #endif // _CHIP8_REGISTERS_INCLUDED_H_
