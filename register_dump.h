@@ -1,0 +1,6 @@
+#ifndef _CHIP8_REGISTER_DUMP_INCLUDED_H_
+#define _CHIP8_REGISTER_DUMP_INCLUDED_H_
+
+void reg_dump(void);
+
+#endif // _CHIP8_REGISTER_DUMP_INCLUDED_H_

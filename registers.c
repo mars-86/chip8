@@ -1,6 +1,7 @@
 #include "registers.h"
 #include "memory.h"
 #include <stdlib.h>
+#include <string.h>
 #define SP_REGISTER_INDEX_START -1
 #define STACK_LENGTH 16
 #define Vx_REGISTER_LENGTH 16
@@ -21,8 +22,10 @@ extern unsigned char *mem_ptr;
 void init_registers(void)
 {
     REGISTERS = (struct registers *)malloc(sizeof(struct registers));
-    REGISTERS->SP = SP_REGISTER_INDEX_START;
+    memset(REGISTERS->Vx, 0, Vx_REGISTER_LENGTH);
+    REGISTERS->I = REGISTERS->DT = REGISTERS->ST = 0;
     REGISTERS->PC = mem_ptr;
+    REGISTERS->SP = SP_REGISTER_INDEX_START;
 }
 
 void set_Vx(unsigned char value, unsigned char Vn)

@@ -59,3 +59,53 @@
 
 1619801471 g:\programacion\c\github\chip-8\registers.h
 
+1619920307 source:d:\programacion\c\github\chip8\interpreter.c
+	"interpreter.h"
+	"registers.h"
+
+1619920231 d:\programacion\c\github\chip8\interpreter.h
+
+1619920307 d:\programacion\c\github\chip8\registers.h
+
+1619920231 source:d:\programacion\c\github\chip8\memory.c
+	"memory.h"
+
+1619920231 d:\programacion\c\github\chip8\memory.h
+	<stdio.h>
+
+1619920307 source:d:\programacion\c\github\chip8\memory_dump.c
+	<stdio.h>
+	"memory.h"
+	"memory_dump.h"
+
+1619920231 d:\programacion\c\github\chip8\memory_dump.h
+
+1619313852 source:d:\programacion\c\github\utils\file_manip.c
+	<stdio.h>
+	<stdlib.h>
+	"file_manip.h"
+
+1619313852 d:\programacion\c\github\utils\file_manip.h
+	<stdio.h>
+
+1619965910 source:d:\programacion\c\github\chip8\main.c
+	<stdio.h>
+	<stdlib.h>
+	"memory.h"
+	"memory_dump.h"
+	"../utils/file_manip.h"
+	"registers.h"
+	"register_dump.h"
+
+1619966509 source:d:\programacion\c\github\chip8\registers.c
+	"registers.h"
+	"memory.h"
+	<stdlib.h>
+	<string.h>
+
+1619922451 d:\programacion\c\github\chip8\register_dump.h
+
+1619970330 source:d:\programacion\c\github\chip8\register_dump.c
+	"registers.h"
+	<stdio.h>
+
