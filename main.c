@@ -5,6 +5,8 @@
 #include "../utils/file_manip.h"
 #include "registers.h"
 #include "register_dump.h"
+#include "sprite.h"
+#include "display.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,5 +20,6 @@ int main(int argc, char *argv[])
     set_PC(CHIP8_PROGRAM_START);
     fclose(f);
     free_registers_resources();
+    draw_sprite(hex_digits[15]);
     return 0;
 }
