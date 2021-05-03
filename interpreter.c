@@ -1,99 +1,129 @@
 #include "interpreter.h"
-
-void exec_instruction_0x0(unsigned char *sub_opcode)
-{
-    switch(*sub_opcode){
-    case 0xE0:
-        break;
-    case 0xEE:
-        break;
-    default:
-        ;
-    }
-}
+#include "registers.h"
 
 void instruction_0x0(unsigned char *opcode)
 {
-    unsigned char *sub_opcode = &opcode[1];
-    switch(sub_opcode[0] & 0x03) {
-    case 0x00:
-        exec_instruction_0x0(sub_opcode);
+    switch((*opcode & MASK_HIGH_BYTE_LOW_NIBBLE) >> 8) {
+    case 0x0:
+        switch(*opcode & MASK_LOW_BYTE){
+        case 0xE0:
+            break;
+        case 0xEE:
+            set_PC(pop_SP());
+            break;
+        default:
+            ;
+        }
+    default:
+        break;
     }
 }
 
 void instruction_0x1(unsigned char *opcode)
 {
-    (*opcode & 0x0FFF);
+    set_PC(*opcode & MASK_NNN);
 }
 
 void instruction_0x2(unsigned char *opcode)
 {
-    (*opcode & 0x0FFF);
+    push_SP(get_PC());
+    set_PC(*opcode & MASK_NNN);
 }
 
 void instruction_0x3(unsigned char *opcode)
 {
-    (*opcode & 0x0FFF);
+    get_Vx((*opcode & MASK_X) >> 8) == (*opcode & MASK_KK) ? increment_PC(2) : increment_PC(1);
 }
 
 void instruction_0x4(unsigned char *opcode)
 {
-
+    get_Vx((*opcode & MASK_X) >> 8) != (*opcode & MASK_KK) ? increment_PC(2) : increment_PC(1);
 }
 
-void instruction_0x5(unsigned char *sub_opcode)
+void instruction_0x5(unsigned char *opcode)
+{
+    get_Vx((*opcode & MASK_X) >> 8) == get_Vx((*opcode & MASK_Y) >> 8) ? increment_PC(2) : increment_PC(1);
+}
+
+void instruction_0x6(unsigned char *opcode)
+{
+    set_Vx(*opcode & MASK_KK, (*opcode & MASK_X) >> 8);
+}
+
+void instruction_0x7(unsigned char *opcode)
+{
+    unsigned char Vn = (*opcode & MASK_X) >> 8;
+    set_Vx(get_Vx(Vn) + (*opcode & MASK_KK), Vn);
+}
+
+void instruction_0x8(unsigned char *opcode)
 {
 
 }
 
-void instruction_0x6(unsigned char *sub_opcode)
+void instruction_0x9(unsigned char *opcode)
+{
+    get_Vx((*opcode & MASK_X) >> 8) != get_Vx((*opcode & MASK_Y) >> 8) ? increment_PC(2) : increment_PC(1);
+}
+
+void instruction_0xA(unsigned char *opcode)
+{
+    set_I(*opcode & MASK_NNN);
+}
+
+void instruction_0xB(unsigned char *opcode)
+{
+    set_PC((*opcode & MASK_NNN) + get_Vx(0));
+}
+
+void instruction_0xC(unsigned char *opcode)
 {
 
 }
 
-void instruction_0x7(unsigned char *sub_opcode)
+void instruction_0xD(unsigned char *opcode)
 {
 
 }
 
-void instruction_0x8(unsigned char *sub_opcode)
+void instruction_0xE(unsigned char *opcode)
 {
-
+    switch(*opcode & MASK_LOW_BYTE) {
+    case 0x9E:
+        break;
+    case 0xA1:
+        break;
+    }
 }
 
-void instruction_0x9(unsigned char *sub_opcode)
+void instruction_0xF(unsigned char *opcode)
 {
-
-}
-
-void instruction_0xA(unsigned char *sub_opcode)
-{
-
-}
-
-void instruction_0xB(unsigned char *sub_opcode)
-{
-
-}
-
-void instruction_0xC(unsigned char *sub_opcode)
-{
-
-}
-
-void instruction_0xD(unsigned char *sub_opcode)
-{
-
-}
-
-void instruction_0xE(unsigned char *sub_opcode)
-{
-
-}
-
-void instruction_0xF(unsigned char *sub_opcode)
-{
-
+    switch(*opcode & MASK_LOW_BYTE) {
+    case 0x07:
+        set_Vx(get_DT(), (*opcode & MASK_X) >> 8);
+        break;
+    case 0x0A:
+        break;
+    case 0x15:
+        set_DT(get_Vx((*opcode & MASK_X) >> 8));
+        break;
+    case 0x18:
+        set_ST(get_Vx((*opcode & MASK_X) >> 8));
+        break;
+    case 0x1E:
+        set_I(get_I() + ((*opcode & MASK_X) >> 8));
+        break;
+    case 0x29:
+        break;
+    case 0x33:
+        break;
+    case 0x55:
+        break;
+    case 0x65:
+        break;
+    default:
+        break;
+    }
 }
 
 void (*instructions[])(unsigned char *) = {
@@ -107,5 +137,5 @@ void (*instructions[])(unsigned char *) = {
 
 void interpret(unsigned char *opcode)
 {
-    instructions[opcode[0] & 0xC](opcode);
+    instructions[*opcode & MASK_HIGH_BYTE_HIGH_NIBBLE](opcode);
 }
