@@ -23,22 +23,25 @@
 1619148719 g:\programacion\c\github\chip-8\memory.h
 	<stdio.h>
 
-1619404380 source:g:\programacion\c\github\chip-8\memory_dump.c
+1620059784 source:g:\programacion\c\github\chip-8\memory_dump.c
 	<stdio.h>
 	"memory.h"
 	"memory_dump.h"
 
-1619809263 source:g:\programacion\c\github\chip-8\main.c
+1620095990 source:g:\programacion\c\github\chip-8\main.c
 	<stdio.h>
 	<stdlib.h>
 	"memory.h"
 	"memory_dump.h"
 	"../utils/file_manip.h"
 	"registers.h"
+	"register_dump.h"
+	"sprite.h"
+	"display.h"
 
 1619145737 g:\programacion\c\github\chip-8\memory_dump.h
 
-1619746177 source:g:\programacion\c\github\chip-8\interpreter.c
+1620059784 source:g:\programacion\c\github\chip-8\interpreter.c
 	"interpreter.h"
 	"registers.h"
 
@@ -52,12 +55,13 @@
 1585975442 g:\programacion\c\github\utils\file_manip.h
 	<stdio.h>
 
-1619808882 source:g:\programacion\c\github\chip-8\registers.c
+1620059784 source:g:\programacion\c\github\chip-8\registers.c
 	"registers.h"
 	"memory.h"
 	<stdlib.h>
+	<string.h>
 
-1619801471 g:\programacion\c\github\chip-8\registers.h
+1620059784 g:\programacion\c\github\chip-8\registers.h
 
 1620010984 source:d:\programacion\c\github\chip8\interpreter.c
 	"interpreter.h"
@@ -118,4 +122,20 @@
 	<stdio.h>
 
 1620013574 d:\programacion\c\github\chip8\display.h
+
+1620096619 source:g:\programacion\c\github\chip-8\display.c
+	"display.h"
+	<stdio.h>
+	<string.h>
+
+1620091225 g:\programacion\c\github\chip-8\display.h
+	"sprite.h"
+
+1620059784 g:\programacion\c\github\chip-8\register_dump.h
+
+1620090766 g:\programacion\c\github\chip-8\sprite.h
+
+1620059784 source:g:\programacion\c\github\chip-8\register_dump.c
+	"registers.h"
+	<stdio.h>
 

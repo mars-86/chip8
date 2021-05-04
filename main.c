@@ -20,6 +20,15 @@ int main(int argc, char *argv[])
     set_PC(CHIP8_PROGRAM_START);
     fclose(f);
     free_registers_resources();
-    draw_sprite(hex_digits[15]);
+    unsigned char h[] = { 0xF0, 0x90, 0x90, 0x90, 0xF0, '\0' };
+    SPRITE sprite = { 20, 10, &h[0] };
+    draw_sprite(&sprite);
+    print();
+    /*draw_sprite(hex_digits[1]);
+    draw_sprite(hex_digits[2]);
+    draw_sprite(hex_digits[3]);
+    draw_sprite(hex_digits[4]);
+    draw_sprite(hex_digits[5]);
+    draw_sprite(hex_digits[15]);*/
     return 0;
 }
