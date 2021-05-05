@@ -91,7 +91,7 @@
 1619313852 d:\programacion\c\github\utils\file_manip.h
 	<stdio.h>
 
-1620015627 source:d:\programacion\c\github\chip8\main.c
+1620187204 source:d:\programacion\c\github\chip8\main.c
 	<stdio.h>
 	<stdlib.h>
 	"memory.h"
@@ -99,7 +99,6 @@
 	"../utils/file_manip.h"
 	"registers.h"
 	"register_dump.h"
-	"sprite.h"
 	"display.h"
 
 1620011003 source:d:\programacion\c\github\chip8\registers.c
@@ -114,13 +113,17 @@
 	"registers.h"
 	<stdio.h>
 
-1620015619 d:\programacion\c\github\chip8\sprite.h
+1620184191 d:\programacion\c\github\chip8\sprite.h
+	"digit.h"
 
-1620015460 source:d:\programacion\c\github\chip8\display.c
+1620186983 source:d:\programacion\c\github\chip8\display.c
 	"display.h"
 	<stdio.h>
+	<string.h>
+	<fcntl.h>
 
-1620013574 d:\programacion\c\github\chip8\display.h
+1620184191 d:\programacion\c\github\chip8\display.h
+	"sprite.h"
 
 1620147515 source:g:\programacion\c\github\chip-8\display.c
 	"display.h"
@@ -140,4 +143,6 @@
 	<stdio.h>
 
 1620146188 g:\programacion\c\github\chip-8\digit.h
+
+1620184191 d:\programacion\c\github\chip8\digit.h
 
