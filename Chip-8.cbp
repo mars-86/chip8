@@ -35,6 +35,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../utils/file_manip.h" />
+		<Unit filename="digit.h" />
 		<Unit filename="display.c">
 			<Option compilerVar="CC" />
 		</Unit>
