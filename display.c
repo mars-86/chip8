@@ -10,9 +10,11 @@
 void draw_sprite(SPRITE *sprite);
 void line_feed(void);
 static unsigned char display[LINEAR_LENGTH];
+static HANDLE stdout_h;
 
-void init_display(void)
+void init_display(HANDLE *handle)
 {
+    stdout_h = handle;
     clear_display();
 }
 
@@ -20,7 +22,8 @@ void clear_display(void)
 {
     memset(display, ' ', LINEAR_LENGTH);
     line_feed();
-    printf("\e[?0;0H");
+    wprintf(L"\x1b[1;1H");
+    // SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
 }
 
 void draw_sprites(SPRITE *sprites)

@@ -28,7 +28,7 @@
 	"memory.h"
 	"memory_dump.h"
 
-1620175492 source:g:\programacion\c\github\chip-8\main.c
+1621467551 source:g:\programacion\c\github\chip-8\main.c
 	<stdio.h>
 	<stdlib.h>
 	"memory.h"
@@ -37,6 +37,8 @@
 	"registers.h"
 	"register_dump.h"
 	"display.h"
+	<windows.h>
+	<wchar.h>
 
 1619145737 g:\programacion\c\github\chip-8\memory_dump.h
 
@@ -125,13 +127,15 @@
 1620184191 d:\programacion\c\github\chip8\display.h
 	"sprite.h"
 
-1620147515 source:g:\programacion\c\github\chip-8\display.c
+1621467538 source:g:\programacion\c\github\chip-8\display.c
 	"display.h"
 	<stdio.h>
 	<string.h>
+	<fcntl.h>
 
-1620147237 g:\programacion\c\github\chip-8\display.h
+1621442929 g:\programacion\c\github\chip-8\display.h
 	"sprite.h"
+	<windows.h>
 
 1620059784 g:\programacion\c\github\chip-8\register_dump.h
 

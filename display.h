@@ -2,8 +2,9 @@
 #define _CHIP8_DISPLAY_INCLUDED_H_
 
 #include "sprite.h"
+#include <windows.h>
 
-void init_display(void);
+void init_display(HANDLE *handle);
 void clear_display(void);
 void draw(const unsigned char **sprites);
 void draw_pixel(const unsigned char *pixel);
