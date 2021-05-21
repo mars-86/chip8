@@ -35,6 +35,11 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../utils/file_manip.h" />
+		<Unit filename="digit.h" />
+		<Unit filename="display.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="display.h" />
 		<Unit filename="interpreter.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -50,10 +55,15 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="memory_dump.h" />
+		<Unit filename="register_dump.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="register_dump.h" />
 		<Unit filename="registers.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="registers.h" />
+		<Unit filename="sprite.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
