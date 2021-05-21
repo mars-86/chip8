@@ -47,6 +47,7 @@ void draw_sprite(SPRITE *sprite)
     for (i = sprite->y; *(sprite->pixels) != '\0'; ++i)
         for (j = sprite->x, spr = *(sprite->pixels)++; spr; ++j, spr <<= 1)
             display[(ROWS * i) + (j + 1)] = spr & BIT_MASK ? '*' : ' ';
+    line_feed();
 }
 
 void line_feed(void)

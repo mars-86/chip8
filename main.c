@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     HANDLE stdout_h = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleOutputCP(CP_UTF8);
-    SetConsoleMode(stdout_h, 0x0007 | 0x0008 | 0x0004);
+    // SetConsoleMode(stdout_h, 0x0007 | 0x0008 | 0x0004);
 
     DWORD dwMode = 0;
     if (!GetConsoleMode(stdout_h, &dwMode))
