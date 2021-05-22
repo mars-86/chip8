@@ -1,5 +1,7 @@
 #include "interpreter.h"
 #include "registers.h"
+#include "display.h"
+#include "../utils/misc/random.h"
 
 void instruction_0x0(unsigned char *opcode)
 {
@@ -7,6 +9,7 @@ void instruction_0x0(unsigned char *opcode)
     case 0x0:
         switch(*opcode & MASK_LOW_BYTE){
         case 0xE0:
+            clear_display();
             break;
         case 0xEE:
             set_PC(pop_SP());
@@ -42,7 +45,7 @@ void instruction_0x4(unsigned char *opcode)
 
 void instruction_0x5(unsigned char *opcode)
 {
-    get_Vx((*opcode & MASK_X) >> 8) == get_Vx((*opcode & MASK_Y) >> 8) ? increment_PC(2) : increment_PC(1);
+    get_Vx((*opcode & MASK_X) >> 8) == get_Vx((*opcode & MASK_Y) >> 4) ? increment_PC(2) : increment_PC(1);
 }
 
 void instruction_0x6(unsigned char *opcode)
@@ -63,7 +66,7 @@ void instruction_0x8(unsigned char *opcode)
 
 void instruction_0x9(unsigned char *opcode)
 {
-    get_Vx((*opcode & MASK_X) >> 8) != get_Vx((*opcode & MASK_Y) >> 8) ? increment_PC(2) : increment_PC(1);
+    get_Vx((*opcode & MASK_X) >> 8) != get_Vx((*opcode & MASK_Y) >> 4) ? increment_PC(2) : increment_PC(1);
 }
 
 void instruction_0xA(unsigned char *opcode)
@@ -78,7 +81,7 @@ void instruction_0xB(unsigned char *opcode)
 
 void instruction_0xC(unsigned char *opcode)
 {
-
+    set_Vx(get_random_uint8() & (*opcode & MASK_KK), (*opcode & MASK_X) >> 8);
 }
 
 void instruction_0xD(unsigned char *opcode)

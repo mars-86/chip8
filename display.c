@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #define ROWS 32
 #define COLS 64
-#define LINEAR_LENGTH ROWS * COLS + ROWS
+#define LINEAR_LENGTH ROWS * COLS + COLS
 #define BIT_MASK 0x80
 
 void draw_sprite(SPRITE *sprite);
@@ -22,7 +22,6 @@ void clear_display(void)
 {
     memset(display, ' ', LINEAR_LENGTH);
     line_feed();
-    wprintf(L"\x1b[1;1H");
     // SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
 }
 
@@ -46,13 +45,14 @@ void draw_sprite(SPRITE *sprite)
     unsigned char spr;
     for (i = sprite->y; *(sprite->pixels) != '\0'; ++i)
         for (j = sprite->x, spr = *(sprite->pixels)++; spr; ++j, spr <<= 1)
-            display[(ROWS * i) + (j + 1)] = spr & BIT_MASK ? '*' : ' ';
+            display[(COLS * i) + (j + 1)] = spr & BIT_MASK ? '*' : ' ';
     line_feed();
 }
 
 void line_feed(void)
 {
     int i;
-    for (i = ROWS; i <= LINEAR_LENGTH; i += ROWS)
+    for (i = COLS; i <= LINEAR_LENGTH; i += COLS)
         display[i] = '\n';
+    wprintf(L"\x1b[1;1H");
 }

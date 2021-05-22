@@ -64,9 +64,11 @@
 
 1620059784 g:\programacion\c\github\chip-8\registers.h
 
-1620010984 source:d:\programacion\c\github\chip8\interpreter.c
+1621706569 source:d:\programacion\c\github\chip8\interpreter.c
 	"interpreter.h"
 	"registers.h"
+	"display.h"
+	"../utils/misc/random.h"
 
 1619920231 d:\programacion\c\github\chip8\interpreter.h
 
@@ -93,7 +95,7 @@
 1619313852 d:\programacion\c\github\utils\file_manip.h
 	<stdio.h>
 
-1621470000 source:d:\programacion\c\github\chip8\main.c
+1621709816 source:d:\programacion\c\github\chip8\main.c
 	<stdio.h>
 	<stdlib.h>
 	"memory.h"
@@ -102,6 +104,7 @@
 	"registers.h"
 	"register_dump.h"
 	"display.h"
+	"keyboard.h"
 	<windows.h>
 	<wchar.h>
 
@@ -117,16 +120,16 @@
 	"registers.h"
 	<stdio.h>
 
-1620184191 d:\programacion\c\github\chip8\sprite.h
+1621560473 d:\programacion\c\github\chip8\sprite.h
 	"digit.h"
 
-1621470636 source:d:\programacion\c\github\chip8\display.c
+1621710019 source:d:\programacion\c\github\chip8\display.c
 	"display.h"
 	<stdio.h>
 	<string.h>
 	<fcntl.h>
 
-1621469672 d:\programacion\c\github\chip8\display.h
+1621560473 d:\programacion\c\github\chip8\display.h
 	"sprite.h"
 	<windows.h>
 
@@ -151,5 +154,38 @@
 
 1620146188 g:\programacion\c\github\chip-8\digit.h
 
-1620184191 d:\programacion\c\github\chip8\digit.h
+1621560473 d:\programacion\c\github\chip8\digit.h
+
+1621647430 source:d:\programacion\c\github\chip8\keyboard.c
+	"keyboard.h"
+	<windows.h>
+	"../TMKev/tmkev.h"
+
+1621647502 d:\programacion\c\github\chip8\keyboard.h
+
+1621636337 d:\programacion\c\github\tmkev\tmkev.h
+	"keys.h"
+	"x11ev.h"
+	"winev.h"
+
+1621636337 d:\programacion\c\github\tmkev\keys.h
+
+1621636337 d:\programacion\c\github\tmkev\x11ev.h
+	<X11/Xlib.h>
+
+1621636480 d:\programacion\c\github\tmkev\winev.h
+	<stdio.h>
+	<windows.h>
+
+1621644741 source:d:\programacion\c\github\tmkev\winev.c
+	"winev.h"
+
+1621707869 d:\programacion\c\github\utils\misc\random.h
+	<stdint.h>
+
+1621707980 source:d:\programacion\c\github\utils\misc\random.c
+	"random.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
 
