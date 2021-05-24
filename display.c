@@ -54,5 +54,5 @@ void line_feed(void)
     int i;
     for (i = COLS; i <= LINEAR_LENGTH; i += COLS)
         display[i] = '\n';
-    wprintf(L"\x1b[1;1H");
+    wprintf(L"\x1B[1;1H");
 }

@@ -48,7 +48,8 @@ int main(int argc, char *argv[])
     free_registers_resources();
     int i;
     for (i = 0; i < 500; ++i) {
-        SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
+        // SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
+        clear_display();
         SPRITE sprite = { i + 20, 10, hex_digits[15], NULL };
         SPRITE sprite2 = { i + 12, 15, hex_digits[7], NULL };
         SPRITE sprite3 = { i + 2, 3, hex_digits[3], NULL };
@@ -58,7 +59,6 @@ int main(int argc, char *argv[])
         process_keyboard_event();
         print();
         Sleep(33);
-        clear_display();
     }
 
     return 0;

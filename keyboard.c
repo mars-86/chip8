@@ -35,6 +35,36 @@ LRESULT CALLBACK term_proc(HANDLE h, UINT e, WPARAM w, LPARAM l)
     if (TMKEV_GET_EVENT_TYPE(e) == KEY_EVENT) {
         if (TMKEV_KEYB_EVENT_IS_KEY_PRESSED(e)) {
             switch (TMKEV_KEYB_GET_KEY_AS_ASCII(l)) {
+            case VK_KEY_0:
+                printf("%s", "0");
+                break;
+            case VK_KEY_1:
+                printf("%s", "1");
+                break;
+            case VK_KEY_2:
+                printf("%s", "2");
+                break;
+            case VK_KEY_3:
+                printf("%s", "3");
+                break;
+            case VK_KEY_4:
+                printf("%s", "4");
+                break;
+            case VK_KEY_5:
+                printf("%s", "5");
+                break;
+            case VK_KEY_6:
+                printf("%s", "6");
+                break;
+            case VK_KEY_7:
+                printf("%s", "7");
+                break;
+            case VK_KEY_8:
+                printf("%s", "8");
+                break;
+            case VK_KEY_9:
+                printf("%s", "9");
+                break;
             case VK_ESCAPE:
                 stop_event_handler();
                 break;
