@@ -45,9 +45,9 @@ int main(int argc, char *argv[])
     load_file_to_mem(&f, CHIP8_PROGRAM_START);
     set_PC(CHIP8_PROGRAM_START);
     fclose(f);
-    free_registers_resources();
     int i;
     for (i = 0; i < 500; ++i) {
+        unsigned char key = ' ';
         // SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
         clear_display();
         SPRITE sprite = { i + 20, 10, hex_digits[15], NULL };
@@ -56,10 +56,12 @@ int main(int argc, char *argv[])
         draw_sprites(&sprite);
         draw_sprites(&sprite2);
         draw_sprites(&sprite3);
-        process_keyboard_event();
+        get_key_pressed_non_block(&key);
         print();
+        printf("%c", key);
         Sleep(33);
     }
+    free_registers_resources();
 
     return 0;
 }

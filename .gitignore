@@ -31,11 +31,19 @@
 *.out
 *.app
 
-# Folders
-.git/
-bin/
-obj/
-bin
-obj
+# Visual Studio Folders
+.vs/
+VTGraph/Debug/
+x64/
+x32/
 Debug
 Release
+
+# Codeblocks Folders
+bin/
+obj/
+
+# Codeblocks project
+*.cbp
+*.depend
+*.layout

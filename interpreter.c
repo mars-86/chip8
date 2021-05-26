@@ -2,7 +2,18 @@
 #include "registers.h"
 #include "display.h"
 #include "memory.h"
+#include "keyboard.h"
 #include "../utils/misc/random.h"
+
+void CLS(void)
+{
+    clear_display();
+}
+
+void RET(void)
+{
+    set_PC(pop_SP());
+}
 
 void instruction_0x0(unsigned char *opcode)
 {
@@ -10,10 +21,10 @@ void instruction_0x0(unsigned char *opcode)
     case 0x0:
         switch(*opcode & MASK_LOW_BYTE){
         case 0xE0:
-            clear_display();
+            CLS();
             break;
         case 0xEE:
-            set_PC(pop_SP());
+            RET();
             break;
         default:
             ;
@@ -170,9 +181,17 @@ void instruction_0xC(unsigned char *opcode)
     set_Vx(get_random_uint8() & (*opcode & MASK_KK), (*opcode & MASK_X) >> 8);
 }
 
+void DRW_Vx_Vy_nibble(unsigned char *opcode)
+{
+    unsigned char n = *opcode & MASK_LOW_BYTE_LOW_NIBBLE, buff[n];
+    read_from_mem(buff, get_I(), n);
+    SPRITE sp = { (*opcode & MASK_X) >> 8, (*opcode & MASK_Y) >> 4, buff, NULL };
+    draw_sprites(&sp);
+}
+
 void instruction_0xD(unsigned char *opcode)
 {
-
+    DRW_Vx_Vy_nibble(opcode);
 }
 
 void instruction_0xE(unsigned char *opcode)
@@ -183,6 +202,18 @@ void instruction_0xE(unsigned char *opcode)
     case 0xA1:
         break;
     }
+}
+
+void LD_Vx_K(unsigned char *opcode)
+{
+    unsigned char key;
+    get_key_pressed_block(&key);
+    set_Vx(key, (*opcode & MASK_X) >> 8);
+}
+
+void LD_F_Vx(unsigned char *opcode)
+{
+    set_I(get_Vx((*opcode & MASK_X) >> 8));
 }
 
 void LD_B_Vx(unsigned char *opcode)
@@ -215,6 +246,7 @@ void instruction_0xF(unsigned char *opcode)
         set_Vx(get_DT(), (*opcode & MASK_X) >> 8);
         break;
     case 0x0A:
+        LD_Vx_K(opcode);
         break;
     case 0x15:
         set_DT(get_Vx((*opcode & MASK_X) >> 8));
@@ -226,6 +258,7 @@ void instruction_0xF(unsigned char *opcode)
         set_I(get_I() + ((*opcode & MASK_X) >> 8));
         break;
     case 0x29:
+        LD_F_Vx(opcode);
         break;
     case 0x33:
         LD_B_Vx(opcode);

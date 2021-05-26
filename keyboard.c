@@ -17,24 +17,26 @@ void init_keyboard(void)
     _tc.cbSize = sizeof(_tc);
     _tc.lpfnTermProc = term_proc;
 
-    init_event_handler();
+    init_event_handler(TMKEV_BLOCKING_MODE);
     register_term_class(&_tc);
 }
 
-int process_keyboard_event(void)
+int get_key_pressed_block(unsigned char *key)
 {
-    // read incomming events
-    read_event_non_block();
-    // dispatch events to handler
-    dispatch_event();
+    return get_key_pressed(key, TMKEV_BLOCKING_MODE);
+}
 
+int get_key_pressed_non_block(unsigned char *key)
+{
+    return get_key_pressed(key, TMKEV_NON_BLOCKING_MODE);
 }
 
 LRESULT CALLBACK term_proc(HANDLE h, UINT e, WPARAM w, LPARAM l)
 {
     if (TMKEV_GET_EVENT_TYPE(e) == KEY_EVENT) {
         if (TMKEV_KEYB_EVENT_IS_KEY_PRESSED(e)) {
-            switch (TMKEV_KEYB_GET_KEY_AS_ASCII(l)) {
+            return TMKEV_KEYB_GET_KEY_AS_ASCII(l);
+            /* switch (TMKEV_KEYB_GET_KEY_AS_ASCII(l)) {
             case VK_KEY_0:
                 printf("%s", "0");
                 break;
@@ -45,8 +47,8 @@ LRESULT CALLBACK term_proc(HANDLE h, UINT e, WPARAM w, LPARAM l)
                 printf("%s", "2");
                 break;
             case VK_KEY_3:
-                printf("%s", "3");
-                break;
+                // printf("%s", "3");
+                return 3;
             case VK_KEY_4:
                 printf("%s", "4");
                 break;
@@ -73,7 +75,7 @@ LRESULT CALLBACK term_proc(HANDLE h, UINT e, WPARAM w, LPARAM l)
                 break;
             default:
                 ;
-            }
+            }*/
         }
     }
     else {

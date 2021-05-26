@@ -64,10 +64,12 @@
 
 1620059784 g:\programacion\c\github\chip-8\registers.h
 
-1621738388 source:d:\programacion\c\github\chip8\interpreter.c
+1621996394 source:d:\programacion\c\github\chip8\interpreter.c
 	"interpreter.h"
 	"registers.h"
 	"display.h"
+	"memory.h"
+	"keyboard.h"
 	"../utils/misc/random.h"
 
 1621737939 d:\programacion\c\github\chip8\interpreter.h
@@ -95,7 +97,7 @@
 1619313852 d:\programacion\c\github\utils\file_manip.h
 	<stdio.h>
 
-1621715171 source:d:\programacion\c\github\chip8\main.c
+1621996515 source:d:\programacion\c\github\chip8\main.c
 	<stdio.h>
 	<stdlib.h>
 	"memory.h"
@@ -156,12 +158,12 @@
 
 1621560473 d:\programacion\c\github\chip8\digit.h
 
-1621714993 source:d:\programacion\c\github\chip8\keyboard.c
+1621996089 source:d:\programacion\c\github\chip8\keyboard.c
 	"keyboard.h"
 	<windows.h>
 	"../TMKev/tmkev.h"
 
-1621647502 d:\programacion\c\github\chip8\keyboard.h
+1621996357 d:\programacion\c\github\chip8\keyboard.h
 
 1621636337 d:\programacion\c\github\tmkev\tmkev.h
 	"keys.h"
@@ -173,11 +175,11 @@
 1621636337 d:\programacion\c\github\tmkev\x11ev.h
 	<X11/Xlib.h>
 
-1621714197 d:\programacion\c\github\tmkev\winev.h
+1621964895 d:\programacion\c\github\tmkev\winev.h
 	<stdio.h>
 	<windows.h>
 
-1621714413 source:d:\programacion\c\github\tmkev\winev.c
+1621964788 source:d:\programacion\c\github\tmkev\winev.c
 	"winev.h"
 
 1621707869 d:\programacion\c\github\utils\misc\random.h
