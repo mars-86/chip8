@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "memory.h"
-#include "memory_dump.h"
-#include "../utils/file_manip.h"
-#include "registers.h"
-#include "register_dump.h"
-#include "display.h"
-#include "keyboard.h"
-#include <windows.h>
-#include <wchar.h>
+#include "chip8.h"
 
 int main(int argc, char *argv[])
 {

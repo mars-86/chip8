@@ -285,5 +285,5 @@ void (*instructions[])(unsigned char *) = {
 
 void interpret(unsigned char *opcode)
 {
-    instructions[*opcode & MASK_HIGH_BYTE_HIGH_NIBBLE](opcode);
+    instructions[(*opcode & MASK_HIGH_BYTE_HIGH_NIBBLE) >> 12](opcode);
 }
