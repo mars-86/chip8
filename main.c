@@ -1,4 +1,5 @@
 #include "chip8.h"
+#include <windows.h>
 
 int main(int argc, char *argv[])
 {
@@ -23,35 +24,10 @@ int main(int argc, char *argv[])
     lpCursor.dwSize = 30;
     SetConsoleCursorInfo(stdout_h, &lpCursor);
 
-    init_registers();
-    init_display(&stdout_h);
-    init_keyboard();
-
-    FILE *f;
-    if (open_file(&f, "../Animal Race [Brian Astle].ch8", "rb")) {
-        perror("file");
-        return 1;
-    }
-    load_file_to_mem(&f, CHIP8_PROGRAM_START);
-    set_PC(CHIP8_PROGRAM_START);
-    fclose(f);
-    int i;
-    for (i = 0; i < 500; ++i) {
-        unsigned char key = ' ';
-        // SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
-        clear_display();
-        SPRITE sprite = { i + 20, 10, hex_digits[15], NULL };
-        SPRITE sprite2 = { i + 12, 15, hex_digits[7], NULL };
-        SPRITE sprite3 = { i + 2, 3, hex_digits[3], NULL };
-        draw_sprites(&sprite);
-        draw_sprites(&sprite2);
-        draw_sprites(&sprite3);
-        get_key_pressed_non_block(&key);
-        print();
-        printf("%c", key);
-        Sleep(33);
-    }
-    free_registers_resources();
+    init_device();
+    load_rom("../Astro Dodge [Revival Studios, 2008].ch8");
+    main_loop();
+    release_resources();
 
     return 0;
 }

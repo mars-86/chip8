@@ -1,6 +1,9 @@
 #ifndef _CHIP8_REGISTERS_INCLUDED_H_
 #define _CHIP8_REGISTERS_INCLUDED_H_
 
+#define STACK_LENGTH 16
+#define Vx_REGISTER_LENGTH 16
+
 #define MASK_NNN 0x0FFF
 #define MASK_LOW_BYTE 0x00FF
 #define MASK_HIGH_BYTE 0xFF00
@@ -29,6 +32,7 @@ unsigned short get_PC(void);
 unsigned short pop_SP(void);
 
 void increment_PC(unsigned short n);
+unsigned short *get_stack_top(void);
 void free_registers_resources(void);
 
 #endif // _CHIP8_REGISTERS_INCLUDED_H_

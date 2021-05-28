@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #define SP_REGISTER_INDEX_START -1
-#define STACK_LENGTH 16
-#define Vx_REGISTER_LENGTH 16
 #define STACK_FAULT 0xFFFF
 
 static struct registers {
@@ -13,10 +11,10 @@ static struct registers {
     unsigned char DT;
     unsigned char ST;
     unsigned short PC;
-    unsigned short SP;
+    short SP;
 } *REGISTERS;
 
-static short stack[STACK_LENGTH];
+static unsigned short stack[STACK_LENGTH];
 extern unsigned char *mem_ptr;
 
 void init_registers(void)
@@ -95,6 +93,12 @@ unsigned short pop_SP(void)
 void increment_PC(unsigned short n)
 {
     REGISTERS->PC += (n << 1); // instructions are two bytes long
+}
+
+unsigned short *get_stack_top(void)
+{
+    unsigned short *top = stack;
+    return top;
 }
 
 void free_registers_resources(void)

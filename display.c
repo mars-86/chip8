@@ -22,7 +22,7 @@ void clear_display(void)
 {
     memset(display, ' ', LINEAR_LENGTH);
     line_feed();
-    // SetConsoleCursorPosition(stdout_h, (COORD){1, 1});
+    wprintf(L"\x1B[1;1H");
 }
 
 void draw_sprites(SPRITE *sprites)
@@ -36,7 +36,7 @@ void draw_sprites(SPRITE *sprites)
 
 void print(void)
 {
-    write(STDOUT_FILENO, display, LINEAR_LENGTH);
+    write(STDOUT_FILENO, display, LINEAR_LENGTH), wprintf(L"\x1B[1;1H");
 }
 
 void draw_sprite(SPRITE *sprite)
@@ -54,5 +54,4 @@ void line_feed(void)
     int i;
     for (i = COLS; i <= LINEAR_LENGTH; i += COLS)
         display[i] = '\n';
-    wprintf(L"\x1B[1;1H");
 }
