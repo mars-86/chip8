@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "memory.h"
+#include "memory_dump.h"
 #define LINE 8
 
 extern unsigned char *mem_ptr;
