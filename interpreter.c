@@ -286,7 +286,5 @@ void (*instructions[])(unsigned short *) = {
 void interpret(unsigned char *opcode)
 {
     unsigned short opc = (*opcode << 8) | *(opcode + 1);
-    printf("\n%X", opc);
-    printf("\n%X", (opc & MASK_HIGH_BYTE_HIGH_NIBBLE) >> 12);
     instructions[(opc & MASK_HIGH_BYTE_HIGH_NIBBLE) >> 12](&opc);
 }

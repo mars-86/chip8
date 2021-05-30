@@ -37,7 +37,7 @@ void load_instruction(void)
 {
     unsigned char opcode[2];
     read_from_mem(opcode, get_PC(), 2);
-    printf("%.2X%.2X", opcode[0], opcode[1]);
+    // printf("%.2X%.2X", opcode[0], opcode[1]);
     // getchar();
     interpret(opcode);
     increment_PC(1);
