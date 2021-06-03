@@ -7,6 +7,7 @@ struct sprite {
     unsigned short x;
     unsigned short y;
     unsigned char *pixels;
+    unsigned short size;
     struct sprite *next;
 };
 

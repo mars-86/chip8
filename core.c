@@ -7,14 +7,24 @@
 #include "register_dump.h"
 #include "display.h"
 #include "keyboard.h"
+#include "digit.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <wchar.h>
 
+void init_memory(void)
+{
+    int i, digit_len = HEX_DIGITS_SIZE;
+    unsigned short from_addr = HEX_DIGITS_START;
+    for (i = 0; i < 0xF; ++i, from_addr += digit_len)
+        write_block_to_mem(hex_digits[i], from_addr, digit_len);
+}
+
 int init_device(void)
 {
     init_registers();
+    init_memory();
     init_display(NULL);
     init_keyboard();
     return 0;
@@ -48,30 +58,36 @@ int main_loop(void)
     unsigned char key = ' ';
     while(key != 'q') {
         key = ' ';
+        cursor_to_start();
         // clear_display();
         load_instruction();
         get_key_pressed_non_block(&key);
         print();
-        // reg_dump();
+        reg_dump();
+        mem_dump_partial(get_PC(), 32);
         Sleep(33);
+        getchar();
     }
-    return 0;
+
     /*
     int i;
+    unsigned char col;
     for (i = 0; i < 500; ++i) {
         unsigned char key = ' ';
         clear_display();
         SPRITE sprite = { i + 20, 10, hex_digits[15], NULL };
         SPRITE sprite2 = { i + 12, 15, hex_digits[7], NULL };
         SPRITE sprite3 = { i + 2, 3, hex_digits[3], NULL };
-        draw_sprites(&sprite);
-        draw_sprites(&sprite2);
-        draw_sprites(&sprite3);
+        draw_sprites(&sprite, &col);
+        draw_sprites(&sprite2, &col);
+        draw_sprites(&sprite3, &col);
         get_key_pressed_non_block(&key);
         print();
-        printf("%c", key);
+        // printf("%c", key);
         Sleep(33);
-    } */
+    }
+    */
+    return 0;
 }
 
 void release_resources(void)
