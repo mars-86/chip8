@@ -3,8 +3,9 @@
 
 int main(int argc, char *argv[])
 {
+    getchar();
     HANDLE stdout_h = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleOutputCP(CP_UTF8);
+    // SetConsoleOutputCP(CP_UTF8);
     // SetConsoleMode(stdout_h, 0x0007 | 0x0008 | 0x0004);
 
     DWORD dwMode = 0;
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
     SetConsoleCursorInfo(stdout_h, &lpCursor);
 
     init_device();
-    load_rom("../Astro Dodge [Revival Studios, 2008].ch8");
+    load_rom("../Airplane.ch8");
     main_loop();
     release_resources();
 

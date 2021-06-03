@@ -183,10 +183,14 @@ void instruction_0xC(unsigned short *opcode)
 
 void DRW_Vx_Vy_nibble(unsigned short *opcode)
 {
-    unsigned short n = *opcode & MASK_LOW_BYTE_LOW_NIBBLE, buff[n];
-    read_from_mem(buff, get_I(), n);
-    SPRITE sp = { (*opcode & MASK_X) >> 8, (*opcode & MASK_Y) >> 4, buff, NULL };
-    draw_sprites(&sp);
+    unsigned short n = *opcode & MASK_LOW_BYTE_LOW_NIBBLE,
+                    x = (*opcode & MASK_X) >> 8, y = (*opcode & MASK_Y) >> 4;
+    unsigned char mbuff[n];
+    unsigned char collision;
+    read_from_mem(mbuff, get_I(), n);
+    SPRITE sp = { get_Vx(x), get_Vx(y), mbuff, n, NULL };
+    draw_sprites(&sp, &collision);
+    set_Vx(collision, 0xF);
 }
 
 void instruction_0xD(unsigned short *opcode)
@@ -206,14 +210,14 @@ void instruction_0xE(unsigned short *opcode)
 
 void LD_Vx_K(unsigned short *opcode)
 {
-    unsigned short key;
+    unsigned char key;
     get_key_pressed_block(&key);
     set_Vx(key, (*opcode & MASK_X) >> 8);
 }
 
 void LD_F_Vx(unsigned short *opcode)
 {
-    set_I(get_Vx((*opcode & MASK_X) >> 8));
+    set_I(HEX_DIGITS_START | ((get_Vx((*opcode & MASK_X) >> 8)) * HEX_DIGITS_SIZE));
 }
 
 void LD_B_Vx(unsigned short *opcode)
@@ -233,7 +237,8 @@ void LD_I_Vx(unsigned short *opcode)
 
 void LD_Vx_I(unsigned short *opcode)
 {
-    unsigned short i, x = (*opcode & MASK_X) >> 8, buff[x];
+    unsigned short i, x = (*opcode & MASK_X) >> 8;
+    unsigned char buff[x];
     read_from_mem(buff, get_I(), x);
     for (i = 0; i < x; ++i)
         set_Vx(buff[i], i);
