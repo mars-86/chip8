@@ -1,9 +1,6 @@
 #include "interpreter.h"
 #include "instruction.h"
 #include "registers.h"
-#include "display.h"
-#include "memory.h"
-#include "keyboard.h"
 
 void instruction_0x0(unsigned short *opcode)
 {
