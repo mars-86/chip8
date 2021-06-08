@@ -8,10 +8,12 @@
 #include "display.h"
 #include "keyboard.h"
 #include "digit.h"
+#include "instruction_dump.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <wchar.h>
+// #define __DEBUG__
 
 void init_memory(void)
 {
@@ -43,12 +45,10 @@ int load_rom(const char *path)
     return 0;
 }
 
-void load_instruction(void)
+void fetch_instruction(void)
 {
     unsigned char opcode[2];
     read_from_mem(opcode, get_PC(), 2);
-    // printf("%.2X%.2X", opcode[0], opcode[1]);
-    // getchar();
     interpret(opcode);
     increment_PC(1);
 }
@@ -60,13 +60,16 @@ int main_loop(void)
         key = ' ';
         cursor_to_start();
         // clear_display();
-        load_instruction();
+        fetch_instruction();
         get_key_pressed_non_block(&key);
         print();
+// #ifdef __DEBUG__
         reg_dump();
-        mem_dump_partial(get_PC(), 32);
-        Sleep(33);
+        // mem_dump_partial(get_PC(), 32);
+        instruction_dump();
         getchar();
+// #endif // __DEBUG__
+        Sleep(33);
     }
 
     /*

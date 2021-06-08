@@ -1,5 +1,23 @@
 #include "chip8.h"
 #include <windows.h>
+#include "instruction_dump.h"
+
+void parse_instruction(char *dest[], char *src, const char *delim)
+{
+    char src_t[128];
+    char *dest_p = dest;
+    sprintf(src_t, "%s", src);
+    char *token = strtok(src_t, delim);
+
+    /* walk through other tokens */
+    while( token != NULL ) {
+        printf( " %s\n", token );
+        sprintf(dest_p++, "%s", token);
+        // dest_p++;
+
+        token = strtok(NULL, delim);
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +43,12 @@ int main(int argc, char *argv[])
     lpCursor.dwSize = 30;
     SetConsoleCursorInfo(stdout_h, &lpCursor);
 
+    char parsed_i[5][10];
+    parse_instruction((char **)parsed_i, "This is - www.tutorialspoint.com - website", "-");
+    int i;
+    for (i = 0; i < 3; ++i)
+        printf("%s\n", parsed_i[i]);
+    return 0;
     init_device();
     load_rom("../Airplane.ch8");
     main_loop();

@@ -4,11 +4,8 @@
 #include "memory.h"
 #include "keyboard.h"
 #include "../utils/misc/random.h"
-
-#define _GET_X(opcode) (((*opcode) & (MASK_X)) >> (8))
-#define _GET_Y(opcode) (((*opcode) & (MASK_Y)) >> (4))
-#define _GET_KK(opcode) ((*opcode) & (MASK_KK))
-#define _GET_NNN(opcode) ((*opcode) & (MASK_NNN))
+#include "instruction_dump.h"
+#include "instruction_misc.h"
 
 void SYS_addr(unsigned short *opcode)
 {
@@ -18,22 +15,26 @@ void SYS_addr(unsigned short *opcode)
 void CLS(void)
 {
     clear_display();
+    DUMP_INSTRUCTION();
 }
 
 void RET(void)
 {
     set_PC(pop_SP());
+    DUMP_INSTRUCTION();
 }
 
 void JP_addr(unsigned short *opcode)
 {
     set_PC(_GET_NNN(opcode));
+    DUMP_INSTRUCTION_ADDR(opcode);
 }
 
 void CALL_addr(unsigned short *opcode)
 {
     push_SP(get_PC());
     set_PC(_GET_NNN(opcode));
+    DUMP_INSTRUCTION_ADDR(opcode);
 }
 
 void SE_Vx_byte(unsigned short *opcode)
@@ -125,6 +126,7 @@ void SNE_Vx_Vy(unsigned short *opcode)
 void LD_I_addr(unsigned short *opcode)
 {
     set_I(_GET_NNN(opcode));
+    DUMP_INSTRUCTION_ADDR(opcode);
 }
 
 void JP_V0_addr(unsigned short *opcode)

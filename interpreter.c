@@ -1,6 +1,6 @@
 #include "interpreter.h"
 #include "instruction.h"
-#include "registers.h"
+#include "instruction_misc.h"
 
 void instruction_0x0(unsigned short *opcode)
 {
